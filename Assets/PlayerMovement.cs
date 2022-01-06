@@ -39,8 +39,13 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //inputMovement.y = 0;
-        float moveHorizontal = moveAction.ReadValue<float>();
+        moveHorizontal = moveAction.ReadValue<float>();
         Debug.Log(moveHorizontal);
         playerRB.velocity = new Vector2(moveHorizontal * speed, playerRB.velocity.y);
+    }
+
+    public int GetMoveHorizontal()
+    {
+        return (int)moveHorizontal;
     }
 }

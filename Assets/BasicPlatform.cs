@@ -10,6 +10,8 @@ public class BasicPlatform : MonoBehaviour
 
     private PlatformEffector2D effector;
 
+    private bool playerOnPlatform = false;
+
     private void Awake()
     {
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
@@ -28,7 +30,7 @@ public class BasicPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dropAction.triggered)
+        if (dropAction.triggered && playerOnPlatform)
         {
             effector.rotationalOffset = 180;
             Invoke("CancelDrop", .4f);
@@ -38,5 +40,20 @@ public class BasicPlatform : MonoBehaviour
     private void CancelDrop()
     {
         effector.rotationalOffset = 0;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerOnPlatform = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerOnPlatform = false;
+        }
     }
 }
