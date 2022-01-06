@@ -43,26 +43,4 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(moveHorizontal);
         playerRB.velocity = new Vector2(moveHorizontal * speed, playerRB.velocity.y);
     }
-
-    //public void BasicMovement(InputAction.CallbackContext context)
-    //{
-    //    //moveHorizontal = context.ReadValue<float>();
-        
-        
-    //    //inputMovement = context.ReadValue<Vector2>();
-    //    //if (context.performed)
-    //    //{
-    //    //    Debug.Log("Move");
-    //    //}
-        
-    //}
-
-    //public void Jump(InputAction.CallbackContext context)
-    //{
-    //    if (context.performed)
-    //    {
-    //        Debug.Log("Jump");
-    //        playerRB.AddForce(jumpForce * jumpDirection, ForceMode2D.Force);
-    //    }
-    //}
 }
