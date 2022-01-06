@@ -19,6 +19,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 jumpDirection = new Vector3(0, 2, 0);
     private InputAction jumpAction;
 
+    [Header("Grounded")]
+    [SerializeField] private bool isGrounded;
+    [SerializeField] private LayerMask isGroundLayer;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckRadius;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (jumpAction.triggered)
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
+        if (jumpAction.triggered && isGrounded)
         {
             playerRB.AddForce(jumpForce * jumpDirection, ForceMode2D.Force);
         }
