@@ -44,15 +44,14 @@ public class PlayerMovement : MonoBehaviour
             playerRB.AddForce(jumpForce * jumpDirection, ForceMode2D.Force);
         }
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
-    }
+    //Debug to view size of groundcheck
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+    //}
     private void FixedUpdate()
     {
-        //inputMovement.y = 0;
         moveHorizontal = moveAction.ReadValue<float>();
-        //Debug.Log(moveHorizontal);
         playerRB.velocity = new Vector2(moveHorizontal * speed, playerRB.velocity.y);
     }
 
