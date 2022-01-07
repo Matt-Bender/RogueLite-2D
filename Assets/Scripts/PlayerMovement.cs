@@ -38,21 +38,31 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
+        
         if (jumpAction.triggered && isGrounded)
         {
             playerRB.AddForce(jumpForce * jumpDirection, ForceMode2D.Force);
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+    }
     private void FixedUpdate()
     {
         //inputMovement.y = 0;
         moveHorizontal = moveAction.ReadValue<float>();
-        Debug.Log(moveHorizontal);
+        //Debug.Log(moveHorizontal);
         playerRB.velocity = new Vector2(moveHorizontal * speed, playerRB.velocity.y);
     }
 
     public int GetMoveHorizontal()
     {
         return (int)moveHorizontal;
+    }
+
+    public bool GetIsGrounded()
+    {
+        return isGrounded;
     }
 }

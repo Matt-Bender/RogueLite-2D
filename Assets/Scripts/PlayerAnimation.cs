@@ -17,7 +17,7 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(playerMovementScript.GetMoveHorizontal());
+        //Debug.Log(playerMovementScript.GetMoveHorizontal());
         playerAnim.SetInteger("moveDirection", playerMovementScript.GetMoveHorizontal());
     }
 }
