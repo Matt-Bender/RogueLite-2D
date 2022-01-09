@@ -28,7 +28,6 @@ public class PlayerAnimation : MonoBehaviour
         {
             playerAnim.SetTrigger("drop");
         }
-        //Debug.Log(playerMovementScript.GetMoveHorizontal());
         playerAnim.SetInteger("moveDirection", playerMovementScript.GetMoveHorizontal());
     }
 }

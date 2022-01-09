@@ -9,7 +9,6 @@ public class BasicPlatform : MonoBehaviour
     private InputAction dropAction;
 
     private PlatformEffector2D effector;
-
     PlayerOnPlatform onPlatformScript;
 
     private void Awake()
