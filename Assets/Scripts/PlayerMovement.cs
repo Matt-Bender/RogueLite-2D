@@ -20,10 +20,16 @@ public class PlayerMovement : MonoBehaviour
     private InputAction jumpAction;
 
     [Header("Grounded")]
-    [SerializeField] private bool isGrounded;
+    private bool isGrounded;
     [SerializeField] private LayerMask isGroundLayer;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius;
+
+    [Header("Dash")]
+    [SerializeField] private float dashDistance;
+    [SerializeField] private float dashCooldown;
+    private float dashTime;
+    private InputAction dashAction;
 
     // Start is called before the first frame update
     void Start()
@@ -32,16 +38,33 @@ public class PlayerMovement : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
+        dashAction = playerInput.actions["Dash"];
     }
 
     // Update is called once per frame
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
-        
+
         if (jumpAction.triggered && isGrounded)
         {
             playerRB.AddForce(jumpForce * jumpDirection, ForceMode2D.Force);
+        }
+        if (dashAction.triggered)
+        {
+            if (Time.time - dashTime >= dashCooldown)
+            {
+                dashTime = Time.time;
+                if (moveHorizontal > 0)
+                {
+                    transform.position += new Vector3(dashDistance, 0, 0);
+                }
+                else if (moveHorizontal < 0)
+                {
+                    transform.position += new Vector3(-dashDistance, 0, 0);
+                }
+                dashTime = Time.time;
+            } 
         }
     }
     //Debug to view size of groundcheck

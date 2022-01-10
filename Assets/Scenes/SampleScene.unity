@@ -535,12 +535,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 250
-  isGrounded: 0
   isGroundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 941086179}
   groundCheckRadius: 0.1
+  dashDistance: 1.5
+  dashCooldown: 3
 --- !u!114 &624424249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +615,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b8396adc-5d2a-40b1-b43e-93f729c007a7
     m_ActionName: Gameplay/Drop[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a035b571-0d84-4a0b-a266-14e6fa8f5d16
+    m_ActionName: Gameplay/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
